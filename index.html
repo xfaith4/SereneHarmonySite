@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#FDF9F3" />
+  <title>Serene Harmony — A Sanctuary for Body, Spirit & Soul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --base:#FDF9F3; --blush:#F2D2D7; --lavender:#DDCDE9; --teal:#BFE0D7; --ink:#5E6A7A;
+      --font-heading:'Playfair Display',serif; --font-body:'Lato',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      --maxw:72rem; --section-pad:clamp(3rem,5vw + 1rem,6.5rem); --radius:16px; --shadow:0 10px 30px rgba(94,106,122,.12);
+      --hero-overlay:rgba(221,205,233,.35); --card-bg:rgba(255,255,255,.75);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;color:var(--ink);background:var(--base);font-family:var(--font-body);line-height:1.7;font-weight:400;letter-spacing:.01em}
+    body::before{
+      content:"";position:fixed;inset:0;z-index:-1;
+      background-image:url('assets/paisley.svg');background-size:600px auto;background-repeat:repeat;background-position:center;
+      opacity:.22;pointer-events:none;filter:contrast(95%) saturate(90%)
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;border-radius:calc(var(--radius) - 4px);display:block}
+    .container{width:min(100%,var(--maxw));margin-inline:auto;padding-inline:clamp(1rem,3vw,2rem)}
+    .stack{display:grid;gap:clamp(1rem,1.75vw,1.5rem)}
+    .section{padding-block:var(--section-pad)}
+    header{position:sticky;top:0;z-index:50;backdrop-filter:blur(6px);
+      background:color-mix(in oklab,var(--base) 80%, white 20%);
+      border-bottom:1px solid color-mix(in oklab,var(--ink) 12%, transparent 88%)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding-block:.9rem}
+    .brand{font-family:var(--font-heading);font-weight:600;letter-spacing:.02em;font-size:1.15rem}
+    .menu{display:flex;gap:1rem}
+    .menu a{padding:.5rem .75rem;border-radius:999px;transition:background .2s ease}
+    .menu a:hover{background:color-mix(in oklab,var(--lavender) 35%, white 65%)}
+    .hero{position:relative;isolation:isolate;min-height:68vh;display:grid;place-items:center;
+      background:linear-gradient(to bottom right,color-mix(in oklab,var(--lavender) 22%,transparent 78%),color-mix(in oklab,var(--blush) 18%,transparent 82%));
+      border-bottom-left-radius:36px;border-bottom-right-radius:36px;box-shadow:var(--shadow);overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--hero-overlay);mix-blend-mode:multiply}
+    .hero-inner{width:min(100%,60rem);padding:clamp(1.5rem,3vw,2rem);text-align:center}
+    .hero h1{font-family:var(--font-heading);font-weight:700;line-height:1.25;font-size:clamp(2.25rem,3.5vw + 1rem,3.6rem);margin:0 0 1rem 0}
+    .lead{font-size:clamp(1.05rem,1.2vw + .85rem,1.25rem);opacity:.95}
+    .cta{margin-top:1.75rem;display:inline-block;padding:.85rem 1.15rem;border-radius:999px;background:var(--blush);color:var(--ink);font-weight:600;box-shadow:var(--shadow);
+      transition:transform .15s ease, box-shadow .2s ease, background .2s ease}
+    .cta:hover{transform:translateY(-1px);box-shadow:0 12px 34px rgba(94,106,122,.16)}
+    .card{background:var(--card-bg);border:1px solid color-mix(in oklab,var(--ink) 10%, transparent 90%);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(1.25rem,1.5vw + 1rem,2rem)}
+    h2,h3{font-family:var(--font-heading);line-height:1.25;margin:0 0 .5rem 0}
+    h2{font-size:clamp(1.6rem,2.2vw + 1rem,2.2rem)}
+    h3{font-size:clamp(1.2rem,1.4vw + .8rem,1.4rem);opacity:.9}
+    .grid{display:grid;gap:clamp(1.25rem,2vw,2rem);grid-template-columns:repeat(12,1fr)}
+    .col-7{grid-column:span 7}.col-5{grid-column:span 5}
+    @media (max-width:960px){.col-7,.col-5{grid-column:1 / -1}}
+    .muted{opacity:.9}
+    .accent-bg-lav{background:color-mix(in oklab,var(--lavender) 22%, white 78%)}
+    .accent-bg-teal{background:color-mix(in oklab,var(--teal) 22%, white 78%)}
+    .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.is-visible{opacity:1;transform:none}
+    footer{padding-block:3rem;margin-top:2rem;border-top:1px solid color-mix(in oklab,var(--ink) 12%, transparent 88%);
+      background:color-mix(in oklab,var(--teal) 12%, var(--base) 88%)}
+    .tiny{font-size:.9rem;opacity:.9}
+    /* Mobile polish */
+    @media (max-width:600px){
+      :root{--section-pad:2.25rem;--radius:14px}
+      .hero h1{font-size:clamp(1.9rem,6vw,2.4rem)}
+      .lead{font-size:1.05rem}
+      .menu a{padding:.4rem .6rem}
+    }
+    button.cta,input[type="submit"],input,textarea{min-height:48px}
+    :focus-visible{outline:3px solid color-mix(in oklab,var(--teal) 50%, white 50%);outline-offset:2px}
+    @media (prefers-reduced-motion:reduce){.reveal{transition:none !important;transform:none !important;opacity:1 !important}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">Serene Harmony</div>
+      <nav class="menu" aria-label="Primary">
+        <a href="#living-marvel">Body</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#services">Offerings</a>
+        <a href="#symphony-of-being">Soul & Thought</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section" id="home" role="region" aria-label="Welcome">
+      <div class="hero-inner container">
+        <h1>Welcome to the Sanctuary Within</h1>
+        <p class="lead">In a world bustling with external demands, there exists a profound sanctuary within each of us – a space of intricate beauty, quiet strength, and limitless potential. Join us in a gentle exploration of this sacred landscape, inviting balance, harmony, and a deep sense of peace into your life.</p>
+        <a class="cta" href="#benefits">Begin Your Journey</a>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="section" id="benefits">
+      <div class="container">
+        <article class="card reveal">
+          <h2>The Benefits of Stretching — Restore, Release, Renew</h2>
+          <p>Targeted stretching helps unwind habitual tension, improves joint range of motion, and supports graceful movement. Over time, it can reduce discomfort from desk work, enhance athletic performance, and amplify day‑to‑day energy.</p>
+          <div class="grid" style="margin-top:1rem;">
+            <div class="card col-5" style="background:color-mix(in oklab, var(--teal) 15%, white 85%);">
+              <h3>Physical</h3>
+              <ul>
+                <li>Improved mobility & flexibility</li>
+                <li>Better posture & body awareness</li>
+                <li>Reduced muscle tightness & soreness</li>
+                <li>Enhanced circulation & recovery</li>
+              </ul>
+            </div>
+            <div class="card col-7" style="background:color-mix(in oklab, var(--lavender) 15%, white 85%);">
+              <h3>Mental & Emotional</h3>
+              <ul>
+                <li>Downshifts stress response</li>
+                <li>Encourages calm, steady breath</li>
+                <li>Supports deeper sleep</li>
+                <li>Creates a spacious, grounded feeling</li>
+              </ul>
+            </div>
+          </div>
+          <p class="muted" style="margin-top:1rem;">*Results vary by individual. Consistency matters—gentle, regular sessions compound.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Living Marvel -->
+    <section class="section" id="living-marvel">
+      <div class="container grid">
+        <article class="card col-7 reveal">
+          <h2>The Living Marvel — A Body of Wonders</h2>
+          <p>Pause for a moment and consider the miracle that is your human body. More than just flesh and bone, it is a breathtaking masterpiece of nature, a symphony of intricate systems working in perfect, silent harmony. From the rhythmic beat of your heart, a steady drum of life, to the delicate dance of cells constantly renewing, healing, and adapting – your body is a testament to extraordinary design.</p>
+          <p>It is your vessel for experience, your anchor to the earth, capable of sensing beauty, expressing joy, enduring challenges, and connecting with the world around you. This magnificent form, often taken for granted, deserves our deepest awe, gratitude, and tender care. It is a living, breathing wonder, a testament to the elegant artistry of creation itself.</p>
+        </article>
+        <aside class="card col-5 accent-bg-lav reveal" aria-label="Living Marvel imagery">
+          <figure class="stack">
+            <img src="assets/living-marvel.svg" alt="Soft-focus nature detail symbolizing the body as a living marvel" loading="lazy" decoding="async" />
+            <figcaption class="muted">Soft, ethereal imagery keeps focus on calm and wonder.</figcaption>
+          </figure>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Symphony -->
+    <section class="section" id="symphony-of-being">
+      <div class="container">
+        <article class="card reveal">
+          <h2>A Symphony of Being — The Harmony of Soul, Thought & Dreams</h2>
+          <p>Imagine your inner world as a magnificent orchestra, where every instrument plays a vital role. At its core resides your <strong>Soul</strong> – your deepest essence, your authentic self, the wellspring of intuition and purpose. It is the quiet wisdom that guides you, the unchanging light within.</p>
+          <p>Your <strong>Thoughts</strong> are the melodies and harmonies, shaping your perceptions, creating your reality, and empowering your intentions. They are the conscious architects of your daily experience, capable of immense creation or gentle contemplation.</p>
+          <p>And your <strong>Dreams</strong> – both the subconscious whispers of the night and the conscious aspirations of your waking hours – are the grand composition, the envisioned future, the expansive possibilities waiting to unfold. They are the seeds of your becoming.</p>
+          <p>When these three elements — Soul, Thought, and Dreams — align, a profound symphony emerges. Your authentic self speaks through your conscious mind, guiding your aspirations towards a path of deep fulfillment and peace. This harmony creates a powerful resonance, allowing you to live with clarity, purpose, and a profound sense of interconnectedness to all that is.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="services">
+      <div class="container grid">
+        <article class="card col-7 reveal">
+          <h2>Offerings — Assisted Stretching & Gentle Mobility</h2>
+          <p>Personalized, hands‑on sessions tailored to your body: relieving tightness, improving range of motion, and helping you move with ease. Options for focused areas (neck/shoulders, hips/low back, feet/ankles) or full‑body flow.</p>
+          <ul>
+            <li><strong>Intro Session (45–60 min):</strong> Assessment + guided stretch plan</li>
+            <li><strong>Restorative Stretch (60 min):</strong> Nervous‑system calm, breath‑led</li>
+            <li><strong>Performance Stretch (60–75 min):</strong> Mobility targets for active bodies</li>
+            <li><strong>Series Packages:</strong> Weekly/bi‑weekly plans for lasting change</li>
+          </ul>
+          <p class="muted">Gift cards available. On‑site options by request.</p>
+        </article>
+        <aside class="card col-5 accent-bg-teal reveal">
+          <h3>Who it's for</h3>
+          <ul>
+            <li>Desk workers with neck/shoulder tension</li>
+            <li>Active humans seeking fluid movement</li>
+            <li>Anyone craving calm, grounded ease</li>
+          </ul>
+          <a class="cta" href="#contact" style="margin-top:1rem; display:inline-block;">Request Availability</a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container grid">
+        <article class="card col-7 reveal">
+          <h2>Contact — Book a Gentle Start</h2>
+          <p>Ready to feel lighter and move easier? Share a few details and we’ll reach out with available times and a suggested plan.</p>
+          <form name="stretch-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="stack" style="margin-top:1rem;">
+            <input type="hidden" name="form-name" value="stretch-contact" />
+            <p style="display:none;">
+              <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+            </p>
+            <label>
+              <span>Name</span>
+              <input required name="name" type="text" autocomplete="name" placeholder="Your name" style="width:100%; padding:.8rem 1rem; border-radius:12px; border:1px solid color-mix(in oklab, var(--ink) 15%, transparent 85%);">
+            </label>
+            <label>
+              <span>Email</span>
+              <input required name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" style="width:100%; padding:.8rem 1rem; border-radius:12px; border:1px solid color-mix(in oklab, var(--ink) 15%, transparent 85%);">
+            </label>
+            <label>
+              <span>What would you like help with?</span>
+              <textarea name="message" rows="5" autocomplete="on" placeholder="Neck/shoulders, hips, recovery, stress, sleep…" style="width:100%; padding:.9rem 1rem; border-radius:12px; border:1px solid color-mix(in oklab, var(--ink) 15%, transparent 85%);"></textarea>
+            </label>
+            <label style="display:flex; gap:.6rem; align-items:flex-start;">
+              <input type="checkbox" name="consent" required>
+              <span class="tiny">I agree to be contacted about scheduling and services.</span>
+            </label>
+            <button class="cta" type="submit">Send Request</button>
+            <div aria-live="polite" id="form-status" class="tiny"></div>
+          </form>
+        </article>
+        <aside class="card col-5 accent-bg-lav reveal">
+          <h3>What clients notice</h3>
+          <ul>
+            <li>“Looser shoulders after long workdays.”</li>
+            <li>“More fluid movement during runs and lifts.”</li>
+            <li>“Easier sleep and a calmer nervous system.”</li>
+          </ul>
+          <p class="muted">Add your own testimonials here for social proof.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container stack">
+      <div class="tiny">© <span id="year"></span> Serene Harmony • A gentle path within</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target);} });
+    },{ threshold: 0.08 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
